@@ -1,0 +1,28 @@
+body {
+  /*background-image: url(' http://www.geocities.com/~junebugtd7/textures/28.jpg'); */
+  background-image: url('http://1-background.com/images/stars-1/beautiful-blue-stars-fill.jpg');
+  background-repeat: repeat;
+  
+}
+div {
+  widtH: 500px;
+  margin: auto;
+}
+
+h1 {
+  color: yellow;
+  font-size:3em;
+  
+}
+h2 {
+  color: orange;
+}
+
+
+p {
+  color: white;
+}
+
+.right {
+  float: right;
+}

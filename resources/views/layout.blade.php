@@ -1,4 +1,3 @@
-
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -6,36 +5,41 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="keywords" content=@yield("metakeyword","Gretong Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design") />
+    <meta name="keywords" content="@yield("metakeyword","Gretong Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design")" />
 
     @section('stylesheet')
-    <link href="{{ asset("css/bootstrap.css") }}" rel='stylesheet' type='text/css' />
-    <!-- Custom Theme files -->
-    <link href="{{ asset("css/style.css") }}" rel='stylesheet' type='text/css' />
-    <!-- start menu -->
-    <link href="{{ asset("css/megamenu.css") }}" rel="stylesheet" type="text/css" media="all" />
-    <!-- jQuery (necessary JavaScript plugins) -->
-    <script type='text/javascript' src="{{ asset("js/jquery-1.11.1.min.js") }}"></script>
-    <link href='//fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
-    <link href='//fonts.googleapis.com/css?family=Playfair+Display:400,700,900' rel='stylesheet' type='text/css'>
+        <link href="{{ asset("css/bootstrap.css") }}" rel='stylesheet' type='text/css' />
+        <!-- Custom Theme files -->
+        <link href="{{ asset("css/style.css") }}" rel='stylesheet' type='text/css' />
+        <!-- start menu -->
+        <link href="{{ asset("css/megamenu.css") }}" rel="stylesheet" type="text/css" media="all" />
+        <!-- jQuery (necessary JavaScript plugins) -->
+        <script type='text/javascript' src="{{ asset("js/jquery-1.11.1.min.js") }}"></script>
+        <link href='//fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=Playfair+Display:400,700,900' rel='stylesheet' type='text/css'>
     @show
     <!-- Custom Theme files -->
-    <!--//theme-style-->
+        <!--//theme-style-->
 
     @section('javascript')
-    <!--//theme-style-->
-    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-    <!-- start menu -->
-       <script type="text/javascript" src="{{ asset("js/megamenu.js") }}"></script>
-    <script>$(document).ready(function(){$(".megamenu").megamenu();});</script>
-    <script src="{{ asset("js/menu_jquery.js") }}"></script>
+        <!--//theme-style-->
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <!-- start menu -->
+           <script type="text/javascript" src="{{ asset("js/megamenu.js") }}"></script>
+        <script>$(document).ready(function(){
+                if ($(".megamenu").length > 0) {
+                    $(".megamenu").megamenu();
+                }
+            });</script>
+        <script src="{{ asset("js/menu_jquery.js") }}"></script>
     @show
-
-
 
 </head>
 <body>
+
+
+@section('headerTop')
 <!-- header_top -->
 <div class="top_bg">
     <div class="container">
@@ -54,6 +58,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         </div>
     </div>
 </div>
+@show
+
+@section('header')
 <!-- header -->
 <div class="header_bg">
     <div class="container">
@@ -93,7 +100,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </div>
                         <div class="cart box_1">
                             <a href="{{ route('checkout') }}">
-                                <h3> <span class="simpleCart_total">$0.00</span> (<span id="simpleCart_quantity" class="simpleCart_quantity">0</span> items)<img src="{{ asset('images/bag.png') }}" alt=""></h3>
+                                <h3>
+                                    <span class="simpleCart_total">$
+                                        @if (session('panier'))
+                                            {{ array_sum(array_column(session('panier'), 'prixTotal')) }}
+                                        @else
+                                            0
+                                        @endif
+
+                                    </span>
+                                    (<span id="simpleCart_quantity" class="simpleCart_quantity">
+                                        @if (session('panier'))
+                                            {{ array_sum(array_column(session('panier'), 'qty')) }}
+                                        @else
+                                            0
+                                        @endif
+                                    </span> items)<img src="{{ asset('images/bag.png') }}" alt=""></h3>
                             </a>
                             <p><a href="javascript:;" class="simpleCart_empty">(empty card)</a></p>
                             <div class="clearfix"> </div>
@@ -113,9 +135,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 </div>
                 <div class="clearfix"> </div>
             </div>
+@show
+
+@section('Startheader')
             <!-- start header menu -->
             <ul class="megamenu skyblue">
+
                 <li class="active grid"><a class="color1" href="{{ route('home') }}">Home</a></li>
+                @foreach($globalNavCategorie as $Caty)
+                    <li class="active grid"><a class="color1" href="{{ route("categorie", ["id"=>$Caty->id]) }}">{{$Caty->name}}</a></li>
+                @endforeach
+
+                <!--
                 <li class="grid"><a class="color2" href="#">new arrivals</a>
                     <div class="megapanel">
                         <div class="row">
@@ -620,7 +651,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                                     <h4>account</h4>
                                     <ul>
                                         <li><a href="#">login</a></li>
-                                        <li><a href="{{ route('register') }}">create an account</a></li>
+                                        <li><a href="{{-- route('register') --}}">create an account</a></li>
                                         <li><a href="women.html">create wishlist</a></li>
                                         <li><a href="women.html">my shopping bag</a></li>
                                         <li><a href="women.html">brands</a></li>
@@ -755,11 +786,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         </div>
                     </div>
                 </li>
+                -->
             </ul>
         </div>
     </div>
 </div>
-
+@show
 
 
 
@@ -843,53 +875,64 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </div>
 
 
+    <div class="footer">
+        <div class="container">
+            <div class="col-md-3 cust">
+                <h4>CUSTOMER CARE</h4>
+                <li><a href="#">Help Center</a></li>
+                <li><a href="#">FAQ</a></li>
+                <li><a href="#">How To Buy</a></li>
+                <li><a href="#">Delivery</a></li>
 
-<div class="footer">
-    <div class="container">
-        <div class="col-md-3 cust">
-            <h4>CUSTOMER CARE</h4>
-            <li><a href="#">Help Center</a></li>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">How To Buy</a></li>
-            <li><a href="#">Delivery</a></li>
-        </div>
-        <div class="col-md-2 abt">
-            <h4>ABOUT US</h4>
-            <li><a href="#">Our Stories</a></li>
-            <li><a href="#">Press</a></li>
-            <li><a href="#">Career</a></li>
-            <li><a href="{{ route('contact') }}">Contact</a></li>
-        </div>
-        <div class="col-md-2 myac">
-            <h4>MY ACCOUNT</h4>
-            <li><a href="{{ route('register') }}">Register</a></li>
-            <li><a href="#">My Cart</a></li>
-            <li><a href="#">Order History</a></li>
-            <li><a href="#">Payment</a></li>
-        </div>
-        <div class="col-md-5 our-st">
-            <div class="our-left">
-                <h4>OUR STORES</h4>
             </div>
-            <div class="our-left1">
+
+            <div class="col-md-2 abt">
+                <h4>ABOUT US</h4>
+                <li><a href="#">Our Stories</a></li>
+                <li><a href="#">Press</a></li>
+                <li><a href="#">Career</a></li>
+                <li><a href="{{ route('contact') }}">Contact</a></li>
+            </div>
+            <div class="col-md-2 myac">
+                <h4>MY ACCOUNT</h4>
+                <li><a href="{{ route('register') }}">Register</a></li>
+                <li><a href="#">My Cart</a></li>
+                <li><a href="#">Order History</a></li>
+                <li><a href="#">Payment</a></li>
+
+
+            </div>
+
+            <div class="col-md-3 cust">
+                <h4>MORE</h4>
+                <li><a href="{{ route('feedback') }}">Feedback</a></li>
+                <div class="cr_btn1">
+                    <li><a href="{{ route('ajouterCategory') }}">AjouterCategory</a></li>
+                </div>
                 <div class="cr_btn">
-                    <a href="#">SOLO</a>
+                    <li><a href="#">SOLO</a> </li>
                 </div>
             </div>
-            <div class="our-left1">
-                <div class="cr_btn1">
-                    <a href="#">BOGOR</a>
+            <hr>
+            <div class="row"></div>
+            <div class="col-md-12 our-st">
+                @foreach ($globalTweets as $tweet)
+                <div class="our-left">
+                    <h4>TWITTER</h4>
+
+                <div class="clearfix"> </div>
+
+
+                <li><i class="fa fa-twitter"></i><small>{!! \Twitter_Autolink::create()->autolink($tweet->text) !!}</small></li>
+
+                </div>
+                @endforeach
                 </div>
             </div>
             <div class="clearfix"> </div>
-            <li><i class="add"> </i>Ad I like My adresse, City</li>
-            <li><i class="phone"> </i>025-2839341</li>
-            <li><a href="mailto:info@example.com"><i class="mail"> </i>info@sitename.com </a></li>
-
+            <p>Copyrights © 2016 IAmME. All rights reserved | Forever </a></p>
         </div>
-        <div class="clearfix"> </div>
-        <p>Copyrights © 2016 IAmME. All rights reserved | Forever </a></p>
     </div>
-</div>
+@yield("footer-script")
 </body>
 </html>

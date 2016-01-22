@@ -1,47 +1,67 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>Be right back.</title>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>A Pen by  bani torrico</title>
+    
+    
+    
+    
+        <link rel="stylesheet" href="{{ asset("bootstrap/css-503/style.css")}}">
 
-        <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
+    
+    
+    
+  </head>
 
-        <style>
-            html, body {
-                height: 100%;
-            }
+  <body>
 
-            body {
-                margin: 0;
-                padding: 0;
-                width: 100%;
-                color: #B0BEC5;
-                display: table;
-                font-weight: 100;
-                font-family: 'Lato';
-            }
+    <div>
+  
+<img src="http://i778.photobucket.com/albums/yy69/deeww/Animated%20Monkies/skeleton_dance.gif" class="right"/>
 
-            .container {
-                text-align: center;
-                display: table-cell;
-                vertical-align: middle;
-            }
+<h1>Mon WonderEcommerce_Aky </h1>
 
-            .content {
-                text-align: center;
-                display: inline-block;
-            }
+<p>Welcome to Mon WonderEcommerce_Aky's website.</p>
 
-            .title {
-                font-size: 72px;
-                margin-bottom: 40px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="container">
-            <div class="content">
-                <div class="title">Be right back.</div>
-            </div>
-        </div>
-    </body>
+<h2>I'm cool, I'm vintage!</h2>
+
+  <p>We're coming back! <br />Please, wait...</p>
+
+
+
+<br />
+<br />
+  
+
+
+<br />
+<img src="http://www.textfiles.com/underconstruction/AtAthensRhodes1319bookconstruction.gif" />
+<br />
+<p>Contact the <a href="#">Webmaster</a>!</p>
+<br />
+<img src="http://www.11points.com/images/animatedgifs/counter.gif" />
+<br />
+<br />
+<img src="http://www.stoveandfireplaceworks.com/wpimages/wp12fcb80f.gif" /><img src="http://www.stoveandfireplaceworks.com/wpimages/wp12fcb80f.gif" /><img src="http://www.stoveandfireplaceworks.com/wpimages/wp12fcb80f.gif" /><img src="http://www.stoveandfireplaceworks.com/wpimages/wp12fcb80f.gif" /><img src="http://www.stoveandfireplaceworks.com/wpimages/wp12fcb80f.gif" /><img 
+
+</div>
+  
+<!--
+<img src="http://www.11points.com/images/animatedgifs/underconstruction.gif" />
+
+<img src="http://www.11points.com/images/animatedgifs/drudgesiren.gif" /> 
+
+<img src="http://jbarton.tripod.com/cowanim.gif" /> 
+
+<img src="http://mainland.cctt.org/biolab/images/Brassy_Cool_Links_Gif.gif" />
+
+
+-->
+    
+    
+    
+    
+    
+  </body>
 </html>

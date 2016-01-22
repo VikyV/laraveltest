@@ -62,13 +62,91 @@ Route::group(['middleware' => ['web']], function () {
         'as' => 'contact'
     ]);
 
-    Route::get('/register', [
+    Route::any('/admin/register', [
         "uses" => "MainController@register",
         'as' => 'register'
+    ]);
+
+
+    Route::any('/feedback', [
+        "uses" => "MainController@feedback",
+        'as' => 'feedback'
+    ]);
+
+    Route::get('/details/{id}', [
+        "uses" => "MainController@details",
+        'as' => 'details',
+
     ]);
 
     Route::get('/checkout', [
         "uses" => "MainController@checkout",
         'as' => 'checkout'
     ]);
+    Route::get('/checkout/ajouter/{id}', [
+        "uses" => "MainController@addproduct",
+        'as' => 'addproduct',
+
+    ]);
+    Route::any('checkout/supprimer/{id}', [
+        "uses" => "MainController@deleteproduct",
+        'as' => 'deleteproduct',
+
+    ]);
+    Route::any('/checkout/update/{id}', [
+        "uses" => "MainController@updateproduct",
+        'as' => 'updateproduct',
+
+    ]);
+
+    Route::get('/categorie/{id}', [
+        "uses" => "MainController@categorie",
+        'as' => 'categorie',
+
+    ]);
+
+
+
+
+
+
+
+        /* ADMIN*/
+
+
+
+    Route::any('/admin/categories/supprimer/{idcat}',[
+        "uses" =>"AdminController@supprimer",
+        'as'=> "supprimer",
+    ]);
+
+
+
+    Route::group(['prefix' => '/admin'], function()
+    {
+
+
+        Route::any('/', [
+            'uses' => 'AdminController@dashboard',
+            'as' => 'dashboard'
+        ]);
+
+
+        Route::get('/categories', [
+            'uses' => 'AdminController@Categories',
+            'as' => 'categories'
+        ]);
+
+
+        Route::any('/ajouter', [
+            'uses' => 'AdminController@ajouterCategory',
+            'as' => 'ajouterCategory'
+        ]);
+
+        Route::any('/register', [
+            'uses' => 'AdminController@register',
+            'as' => 'register'
+        ]);
+
+    });
 });

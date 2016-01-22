@@ -1,10 +1,15 @@
 @extends("layout")
+
 @section('title')
 	My Wonder Title for Welcome
-	@stop
+@stop
 
+@section('stylesheet')
+	@parent
+	<link rel="stylesheet" type="text/css" href="{{ asset("css/jquery.datetimepicker.css") }}">
+@stop
 
-	@section("content")
+@section("content")
 <!-- content -->
 
 <div class="container">
@@ -20,7 +25,7 @@
 	@if (session('successContact'))
 		<div class="alert alert-success">
 			<a href="#" class="close" data-dismiss="alert">&times;</a>
-			<i class="fa fa-times"></i> {{ session('successContact') }}
+			<i class="fa fa-times"></i> {{ session('successCat') }}
 		</div>
 	@endif
 	@if(count($errors->all()))
@@ -32,9 +37,9 @@
 			</ul>
 		</div>
 	@endif
-				  <div class="contact-form" action="{{ route('contact') }}">
+				  <div class="contact-form">
 			 	  	 	<h2>Contact Us</h2>
-					  <form method="post" >
+					  <form method="post" action="{{ route('contact') }}">
 						  {{ csrf_field() }}
 						  <div>
 						    	<span><label>Name</label></span>
@@ -46,11 +51,20 @@
 								 <span><input name="userEmail" type="text" class="textbox @if ($errors->has('userEmail'))has-error @endif" value="{{ Request::old('userEmail') }}"></span>
 						    </div>
 						    <div>
-						     	<span><label>Mobile</label></span>
+						     	<span><label>téléphone</label></span>
 						    	<span><input name="userPhone" type="text" class="textbox" value="{{ Request::old('userPhone') }}"></span>
 						    </div>
+						  <!-- datepicker -->
+
+							 <span> <label  for="textinput">prise de rendez-vous</label></span>
+							  <div class="col-md-12">
+								  <input id="datetimepicker" name="datetimepicker"  type="text">
+								  <span class="help-block"> </span>
+							  </div>
+
+
 						    <div>
-						    	<span><label>Subject</label></span>
+						    	<span><label>Sujet</label></span>
 						    	<span><textarea name="userMsg" value="{{ Request::old('userMsg') }}"> </textarea></span>
 						    </div>
 						   <div>
@@ -62,4 +76,23 @@
 			  </div>
 </div>
 </div>
+@stop
+
+
+@section("footer-script")
+	<script src="{{ asset("js/jquery.datetimepicker.full.min.js") }}"></script>
+	<script type="text/javascript">
+
+		$(document).ready(function()
+		{
+			$('#datetimepicker').datetimepicker
+			({
+				theme:'dark',
+				step: 30,//tts les 1/2H.
+				minDate:0, // today
+				closeOnDateSelect:true
+			});
+		});
+	</script>
+	<script src="{{ asset("js/ie-emulation-modes-warning.js") }}"></script>
 @stop

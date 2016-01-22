@@ -1,12 +1,4 @@
 @extends("layout")
-@section('title')
-    My Wonder Title for Welcome
-@stop
-
-@section('javascript')
-    @parent
-    <script src="{{ asset("js/simpleCart.min.js") }}"> </script>
-@stop
 
 @section("content")
 <div class="arriv">
@@ -72,6 +64,7 @@
             <div class="col-md-4 arriv-right2">
                 <img src="{{ asset("images/7.jpg")}}" class="img-responsive" alt="">
                 <div class="arriv-info2">
+
                     <a href="details.html"><h3>Elegant Watches<i class="ars"></i></h3></a>
                 </div>
             </div>
@@ -84,22 +77,18 @@
         <h3>Special Offers</h3>
         <div class="specia-top">
             <ul class="grid_2">
+                @foreach ($produit as $prod)
                 <li>
-                    <a href="details.html"><img src="{{ asset("images/8.jpg")}}" class="img-responsive" alt=""></a>
+                    <a href="{{ route('details', ['id'=>$prod["id"]]) }}"><img src="{{ asset("images/8.jpg")}}" class="img-responsive" alt=""></a>
                     <div class="special-info grid_1 simpleCart_shelfItem">
-                        <h5>Lorem ipsum dolor</h5>
-                        <div class="item_add"><span class="item_price"><h6>ONLY $40.00</h6></span></div>
+                        <h5>{{ $prod['title'] }}</h5>
+                        <div class="item_add"><span class="item_price"><h6>{{ $prod['price'] }}</h6></span></div>
                         <div class="item_add"><span class="item_price"><a href="#">add to cart</a></span></div>
                     </div>
+
                 </li>
-                <li>
-                    <a href="details.html"><img src="{{ asset("images/9.jpg")}}" class="img-responsive" alt=""></a>
-                    <div class="special-info grid_1 simpleCart_shelfItem">
-                        <h5>Consectetur adipis</h5>
-                        <div class="item_add"><span class="item_price"><h6>ONLY $60.00</h6></span></div>
-                        <div class="item_add"><span class="item_price"><a href="#">add to cart</a></span></div>
-                    </div>
-                </li>
+                @endforeach
+
                 <li>
                     <a href="details.html"><img src="{{ asset("images/10.jpg")}}" class="img-responsive" alt=""></a>
                     <div class="special-info grid_1 simpleCart_shelfItem">
